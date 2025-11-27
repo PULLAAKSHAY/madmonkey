@@ -1,15 +1,10 @@
 #!/bin/bash
 
-###############################################
-# 1. System Update & Basic Dependencies
-###############################################
+
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y ca-certificates curl gnupg lsb-release apt-transport-https
 
 
-###############################################
-# 2. Install Docker CE (Latest Stable)
-###############################################
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
     sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -27,9 +22,6 @@ sudo systemctl enable --now docker
 docker --version
 
 
-###############################################
-# 3. Configure containerd (Kubernetes Runtime)
-###############################################
 sudo mkdir -p /etc/containerd
 sudo containerd config default | sudo tee /etc/containerd/config.toml >/dev/null
 
