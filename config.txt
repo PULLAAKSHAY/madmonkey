@@ -1,0 +1,28 @@
+deploy.yaml
+
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+
+nodes:
+  - role: control-plane
+    extraPortMappings:
+      - containerPort: 30080
+        hostPort: 30080
+        protocol: TCP
+  - role: worker
+  - role: worker
+
+
+     kind create cluster --config kind-config.yaml --image kindest/node:v1.30.0
+
+
+
+kind load docker-image akshay:1.0
+
+  kubectl apply -f deploy.yaml
+
+  kubectl get svc flask-api-service
+
+
+
+curl http://localhost:30080
