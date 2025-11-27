@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-api-deployment
+  labels:
+    app: my-api
+spec:
+  replicas: 1 # Specifies the number of desired pods/instances
+  selector:
+    matchLabels:
+      app: my-api # Matches the labels in the pod template below
+  template:
+    metadata:
+      labels:
+        app: my-api # Labels for the pods
+    spec:
+      containers:
+      - name: my-api-container
+        image: your-dockerhub-username/your-image-name:latest # Replace with your actual image and tag
+        ports:
+        - containerPort: 80 # The port your API listens on inside the container
